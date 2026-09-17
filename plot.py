@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = []
+# dependencies = ["matplotlib"]
 # ///
 
 from pathlib import Path
