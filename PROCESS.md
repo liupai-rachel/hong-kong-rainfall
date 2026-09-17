@@ -1,15 +1,33 @@
 # Process
 
-<!-- Same as assignment 1, same honesty. Which tools you used and for what; one
-thing you kept and why it was good; one thing you rejected and why it was wrong.
-"I did not use any" is fine if it is true.
+## 1. Choose the phenomenon
 
-If a model wrote most of plot.py, which is likely and allowed, the interesting part
-is what you had to correct: did it invent a column name, use pandas where a list
-would do, silently drop the rows it could not parse? -->
+I chose Hong Kong rainfall because rainfall is a clear phenomenon that changes over time and can be represented visually.
 
-## Tools
+## 2. Get the data
 
-## Kept
+The data was collected from the Hong Kong Observatory open data.
 
-## Rejected
+I used the 2026 daily rainfall CSV file.
+
+The raw CSV file is saved in the `data/` folder.
+
+## 3. Prepare the data
+
+The `plot.py` script reads the local CSV file from the `data/` folder.
+
+It extracts the date and daily rainfall values and converts them into data that can be plotted.
+
+## 4. Make the visualisation
+
+I used Python and Matplotlib to create the rainfall visualisation.
+
+The final image is saved as:
+
+`out/hong-kong-rainfall.png`
+
+## 5. Reproducibility
+
+The raw data is included in the repository, so the visualisation can be generated without downloading the data again.
+
+The scripts can be run locally using `uv run`.
