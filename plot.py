@@ -5,6 +5,7 @@
 
 from pathlib import Path
 import csv
+from datetime import date
 import matplotlib.pyplot as plt
 
 HERE = Path(__file__).parent
@@ -14,22 +15,42 @@ OUT = HERE / "out" / "hong-kong-rainfall.png"
 with FILE.open(encoding="utf-8-sig") as f:
     rows = list(csv.reader(f))
 
-# The first three rows are the title and header information.
+# Skip the title and header rows.
 data = rows[3:]
 
 dates = []
 rainfall = []
 
 for row in data:
+    # Skip empty or incomplete rows.
+    if len(row) < 5:
+        continue
+
     year, month, day, value, completeness = row
 
-    dates.append(f"{year}-{month}-{day}")
+    # Skip rows without a valid date.
+    try:
+        current_date = date(int(year), int(month), int(day))
+    except ValueError:
+        continue
 
-    if value == "Trace":
-        rainfall.append(0.0)
+    # "Trace" means a very small amount of rainfall.
+    if value.strip().lower() == "trace":
+        amount = 0.0
     else:
-        rainfall.append(float(value))
+        try:
+            amount = float(value)
+        except ValueError:
+            continue
 
+    dates.append(current_date)
+    rainfall.append(amount)
+
+# Print the first parsed data point before plotting.
+print("First parsed data:", dates[0], rainfall[0])
+print("Rainfall type:", type(rainfall[0]))
+
+# Create the chart.
 plt.figure(figsize=(12, 5))
 plt.plot(dates, rainfall)
 
@@ -40,6 +61,7 @@ plt.ylabel("Rainfall (mm)")
 plt.xticks(rotation=45)
 plt.tight_layout()
 
+# Save the image.
 OUT.parent.mkdir(exist_ok=True)
 plt.savefig(OUT, dpi=200)
 plt.close()
