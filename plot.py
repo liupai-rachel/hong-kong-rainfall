@@ -25,6 +25,10 @@ OUT = HERE / "out" / "hong-kong-rainfall.png"
 with FILE.open(encoding="utf-8-sig") as f:
     rows = list(csv.reader(f))
 
+print("First row:", rows[3])
+print("One value:", rows[3][3])
+print("Type:", type(rows[3][3]))
+
 dates = []
 rainfall = []
 
