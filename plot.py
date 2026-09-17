@@ -24,7 +24,11 @@ for row in data:
     year, month, day, value, completeness = row
 
     dates.append(f"{year}-{month}-{day}")
-    rainfall.append(float(value))
+
+    if value == "Trace":
+        rainfall.append(0.0)
+    else:
+        rainfall.append(float(value))
 
 plt.figure(figsize=(12, 5))
 plt.plot(dates, rainfall)
