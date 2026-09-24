@@ -14,12 +14,11 @@ Source: https://data.weather.gov.hk/weatherAPI/cis/csvfile/HKO/2026/daily_HKO_RF
 
 The final visualisation represents the days of 2026 as a circular structure. Each radial line represents one day, and the length of the line changes according to the amount of rainfall. This creates a visual pattern that makes rainy periods and changes across the year easier to notice. Different parts of the circle also correspond to different periods of the year.
 
+![Hong Kong rainfall visualisation](out/hong-kong-rainfall.png)
+
 ## How to run it
 
 The raw CSV file is included in the `data/` folder, so the project does not need to download the data again. Run the plotting script with:
 
-`uv run plot.py`
-
-The final image is saved in:
-
-`out/hong-kong-rainfall.png`
+```bash
+uv run plot.py
